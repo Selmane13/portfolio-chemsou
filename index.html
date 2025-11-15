@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHEMINI Chems Eddine - Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💼</text></svg>">
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #8b5cf6;
+        --accent: #ec4899;
+        --bg: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-card: #334155;
+        --text: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --border: #475569;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.7;
+        color: var(--text);
+        background: var(--bg);
+        overflow-x: hidden;
+        padding-top: 70px;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+        z-index: -1;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
+      }
+
+      /* Navigation - FIXÉE EN HAUT */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: transparent;
+        backdrop-filter: none;
+        border-bottom: 1px solid transparent;
+        padding: 1rem 2rem;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        position: relative;
+        letter-spacing: 0.02em;
+      }
+
+      nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover {
+        color: var(--text);
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      /* Header avec meilleur alignement */
+      header {
+        position: relative;
+        padding: 3rem 2rem 5rem;
+        overflow: hidden;
+      }
+
+      header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      }
+
+      header .content {
+        position: relative;
+        z-index: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+      }
+
+      .profile-section {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .photo-container {
+        position: relative;
+        width: 320px;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .photo-container::before {
+        content: '';
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(139, 92, 246, 0.25));
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      .photo-container::after {
+        content: '';
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(139, 92, 246, 0.2));
+        border-radius: 50%;
+        top: 8%;
+        right: -8%;
+        z-index: 0;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.08);
+          opacity: 0.9;
+        }
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px) scale(1);
+        }
+        50% {
+          transform: translateY(-25px) scale(1.05);
+        }
+      }
+
+      .dots-pattern {
+        position: absolute;
+        bottom: 12%;
+        left: -8%;
+        width: 110px;
+        height: 110px;
+        background-image: radial-gradient(circle, rgba(99, 102, 241, 0.4) 2.5px, transparent 2.5px);
+        background-size: 16px 16px;
+        z-index: 0;
+        opacity: 0.6;
+        animation: dotsFade 3s ease-in-out infinite;
+      }
+
+      @keyframes dotsFade {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 0.3; }
+      }
+
+      .profile-photo {
+        width: 290px;
+        height: auto;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+        filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.4));
+        transition: all 0.4s ease;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+      }
+
+      .photo-container:hover .profile-photo {
+        transform: scale(1.03) translateY(-5px);
+        filter: drop-shadow(0 30px 60px rgba(99, 102, 241, 0.5));
+      }
+
+      /* Header text - ALIGNÉ À GAUCHE MIEUX */
+      .header-text {
+        flex: 1;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      header h1 {
+        font-size: clamp(2.5rem, 4vw, 3.8rem);
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      header p {
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        color: var(--text-secondary);
+        font-weight: 400;
+        line-height: 1.8;
+        text-align: left;
+        margin-bottom: 2rem;
+      }
+
+      /* Boutons CTA dans le header */
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.8rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+        letter-spacing: 0.01em;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+      }
+
+      .btn-secondary {
+        background: rgba(51, 65, 85, 0.5);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(51, 65, 85, 0.7);
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      /* Sections */
+      section {
+        background: rgba(30, 41, 59, 0.4);
+        backdrop-filter: blur(10px);
+        margin: 3rem 0;
+        padding: 3rem;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        transition: all 0.2s ease;
+      }
+
+      section:hover {
+        border-color: var(--primary);
+        box-shadow: 0 8px 40px rgba(99, 102, 241, 0.15);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        font-weight: 700;
+        margin-bottom: 2.5rem;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      /* Projects - ANIMATION RAPIDE ET SUBTILE */
+      .project {
+        margin-bottom: 2.5rem;
+        padding: 2rem;
+        background: rgba(51, 65, 85, 0.3);
+        border-radius: 16px;
+        border: 1px solid transparent;
+        transition: all 0.15s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--primary), var(--secondary));
+        opacity: 0;
+        transition: opacity 0.15s ease;
+      }
+
+      .project:hover {
+        background: rgba(51, 65, 85, 0.5);
+        border-color: var(--primary);
+        transform: translateX(4px);
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+      }
+
+      .project:hover::before {
+        opacity: 1;
+      }
+
+      .project h3 {
+        color: var(--text);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+      }
+
+      .project .date {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: rgba(99, 102, 241, 0.1);
+        border-radius: 6px;
+      }
+
+      .project .description {
+        color: var(--text-secondary);
+        margin: 1.5rem 0;
+        line-height: 1.8;
+        font-size: 0.95rem;
+      }
+
+      .project .description strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* Images des projets */
+      .project-image {
+        width: 100%;
+        height: 200px;
+        background: rgba(51, 65, 85, 0.5);
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--border);
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .project:hover .project-image img {
+        transform: scale(1.05);
+      }
+
+      .project-image-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 8px;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.15s ease;
+      }
+
+      .project-link:hover {
+        background: rgba(99, 102, 241, 0.2);
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .project-link svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* Tags */
+      .tags {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+      }
+
+      .tag {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+        color: var(--text);
+        padding: 0.4rem 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        transition: all 0.15s ease;
+        letter-spacing: 0.01em;
+      }
+
+      .tag:hover {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* About section */
+      #about p {
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+        line-height: 1.9;
+        margin-bottom: 1.5rem;
+      }
+
+      #about p strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* Contact - ITEMS ALIGNÉS EN GRILLE 2x2 */
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: rgba(51, 65, 85, 0.3);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        transition: all 0.15s ease;
+      }
+
+      .contact-item:hover {
+        background: rgba(51, 65, 85, 0.5);
+        border-color: var(--primary);
+        transform: translateX(4px);
+      }
+
+      .contact-item strong {
+        color: var(--primary);
+        font-weight: 600;
+        min-width: 100px;
+        flex-shrink: 0;
+      }
+
+      .contact-item span,
+      .contact-item a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        word-break: break-word;
+      }
+
+      .contact-item a:hover {
+        color: var(--text);
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(15, 23, 42, 0.8);
+        color: var(--text-muted);
+        text-align: center;
+        padding: 3rem 2rem;
+        margin-top: 4rem;
+        border-top: 1px solid var(--border);
+      }
+
+      footer p {
+        font-size: 0.95rem;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      section {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        body {
+          padding-top: 60px;
+        }
+
+        header {
+          padding: 3rem 1.5rem 4rem;
+        }
+
+        header .content {
+          flex-direction: column;
+          gap: 3rem;
+        }
+
+        .profile-section {
+          order: 1;
+        }
+
+        .header-text {
+          order: 2;
+          text-align: center;
+        }
+
+        header p {
+          text-align: center;
+        }
+
+        .cta-buttons {
+          justify-content: center;
+        }
+
+        .photo-container {
+          width: 260px;
+          height: 330px;
+        }
+
+        .photo-container::before {
+          width: 280px;
+          height: 280px;
+        }
+
+        .profile-photo {
+          width: 230px;
+        }
+
+        nav ul {
+          gap: 1.5rem;
+        }
+
+        .container {
+          padding: 2rem 1.5rem;
+        }
+
+        section {
+          padding: 2rem 1.5rem;
+          margin: 2rem 0;
+        }
+
+        .project {
+          padding: 1.5rem;
+        }
+
+        h2 {
+          margin-bottom: 2rem;
+        }
+
+        .contact-info {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .contact-info {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      ::selection {
+        background: var(--primary);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navbar">
+      <ul>
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#academic">Projets Académiques</a></li>
+        <li><a href="#professional">Expériences</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <div class="content">
+        <div class="profile-section">
+          <div class="photo-container">
+            <div class="dots-pattern"></div>
+            <img src="./images/Frame 1.png" alt="CHEMINI Chems Eddine" class="profile-photo">
+          </div>
+        </div>
+        <div class="header-text">
+          <h1>CHEMINI Chems Eddine</h1>
+          <p>
+            Étudiant en Ingénierie des Systèmes d'Information | Passionné par le Management de Projet • Data Science • Développement Full-Stack • Sécurité des SI
+          </p>
+          <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Me Contacter
+            </a>
+            <a href="./CV_CHEMINI_Chems_Eddine.pdf" download class="btn btn-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Télécharger CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="about">
+        <h2>À Propos de Moi</h2>
+        <p>
+          Étudiant en deuxième année de Cycle d'Ingénieur à l'École Nationale Supérieure d'Informatique (ESI Alger), spécialité Systèmes d'Information et Technologies. Actuellement en stage de fin d'études à l'Université du Luxembourg (SNT – Interdisciplinary Centre for Security, Reliability and Trust), où je travaille sur l'imputation de données temporelles manquantes par modèles de diffusion guidés par une base de données graphe.
+        </p>
+        <p>
+          Motivé, rigoureux et déterminé à atteindre mes objectifs tout en développant mes compétences, avec une ambition d'approfondir mes connaissances dans les domaines variés de l'informatique à travers une expérience internationale. Mon objectif professionnel est de débuter en tant qu'ingénieur spécialisé en systèmes d'information, puis d'évoluer vers un poste de Chef de projet IT, afin de piloter des projets digitaux stratégiques et d'accompagner la transformation numérique des entreprises.
+        </p>
+        <p>
+          <strong>Formation :</strong> Diplôme d'Ingénieur d'État et Master en Informatique - spécialité Systèmes d'Information et Technologies | ESI Alger (2021-2026)
+        </p>
+        <p>
+          <strong>Baccalauréat :</strong> Mention Excellent avec 18,44/20 - Série Scientifique Expérimentale (2021)
+        </p>
+      </section>
+
+      <section id="academic">
+        <h2>Projets Académiques</h2>
+
+        <div class="project">
+          <h3>Stage de fin d'études - Université du Luxembourg</h3>
+          <p class="date">2025-2026 | SNT Luxembourg</p>
+          
+          <div class="project-image">
+            <div class="project-image-placeholder">
+              📊 Projet de Recherche en Data Science<br/>
+              <small>Imputation de données temporelles par modèles de diffusion</small>
+            </div>
+          </div>
+          
+          <p class="description">
+            <strong>Sujet :</strong> Imputation de données temporelles manquantes par modèles de diffusion guidés par une base de données graphe.<br /><br />
+            Conception d'un Framework combinant Neo4j pour la modélisation des relations et des modèles de diffusion pour l'imputation efficace et scalable des données manquantes. Ce projet innovant exploite les bases de données graphes pour améliorer les performances des modèles de diffusion dans le traitement des séries temporelles incomplètes.
+          </p>
+          
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              Voir Détails
+            </a>
+          </div>
+          
+          <div class="tags">
+            <span class="tag">Neo4j</span>
+            <span class="tag">Modèles de Diffusion</span>
+            <span class="tag">Séries Temporelles</span>
+            <span class="tag">Python</span>
+            <span class="tag">Data Science</span>
+            <span class="tag">Recherche</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Prédiction des Décès Post-Opératoires</h3>
+          <p class="date">Projet académique</p>
+          
+          <div class="project-image">
+            <div class="project-image-placeholder">
+              🏥 Machine Learning Médical<br/>
+              <small>Classification et prédiction des risques post-opératoires</small>
+            </div>
+          </div>
+          
+          <p class="description">
+            Développement d'un modèle de classification avancé pour anticiper les risques de décès après intervention chirurgicale. Le projet utilise des techniques de Machine Learning pour analyser des données médicales complexes et prédire les risques post-opératoires avec précision.
+          </p>
+          
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+          
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Google Colab</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">SMOTE</span>
+            <span class="tag">CTGAN</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Progiciel de Gestion Intégré pour la Gestion des Réclamations</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Solution ERP basée sur Odoo permettant l'automatisation complète du processus de gestion des réclamations au sein de l'entreprise AlMiyah Djazair. Le système optimise le traitement des demandes clients et améliore l'efficacité opérationnelle.
+          </p>
+          <div class="tags">
+            <span class="tag">Odoo</span>
+            <span class="tag">Python</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">XML</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">ERP</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Système de Suivi des Opérations de Sondage Pétrolier - SONATRACH</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Application web pour la gestion et le contrôle en temps réel des opérations de sondage pétrolier chez SONATRACH dans le secteur de l'Exploration-Production. Interface moderne et réactive pour le suivi des opérations critiques.
+          </p>
+          <div class="tags">
+            <span class="tag">ReactJS</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">SpringBoot</span>
+            <span class="tag">Oracle</span>
+            <span class="tag">Temps Réel</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Application Mobile de Livraison de Repas</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Développement d'une application mobile complète pour la livraison de repas, offrant une expérience utilisateur fluide avec gestion des commandes en temps réel, suivi de livraison et système de paiement intégré.
+          </p>
+          <div class="tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Mobile</span>
+            <span class="tag">E-commerce</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Système de Gestion des Attestations et Ordres de Mission - ESI</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Conception et développement d'un système de gestion complet pour les demandes d'attestations de travail et ordres de mission à l'ESI. Solution web moderne permettant l'automatisation des processus administratifs et le suivi des demandes.
+          </p>
+          <div class="tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">Django</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Gestion Administrative</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Moteur de Recherche pour Articles Scientifiques</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Développement d'un moteur de recherche intelligent pour articles scientifiques avec fonctionnalités de recherche avancée, filtrage et indexation. Interface intuitive permettant aux chercheurs de trouver rapidement des publications pertinentes.
+          </p>
+          <div class="tags">
+            <span class="tag">ReactJS</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Recherche</span>
+            <span class="tag">Indexation</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Application pour la Méthode d'Imputation Rationnelle des Charges Fixes</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Développement d'une application complète pour la gestion et le calcul de l'imputation rationnelle des charges fixes. Fonctionnalités incluant un tableau de bord interactif pour la visualisation et l'analyse des données comptables, avec un design UI/UX soigné et une identité visuelle professionnelle.
+          </p>
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">UI/UX Design</span>
+            <span class="tag">Dashboard</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Plateforme Numérique pour le Tourisme en Algérie</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Conception complète d'un site web et d'une application mobile pour la planification de voyages et la découverte des sites touristiques en Algérie. Solution cross-platform offrant une expérience utilisateur fluide et intuitive.
+          </p>
+          <div class="tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Mobile</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Site Web pour l'Association Caritative "Sourire à l'Innocence"</h3>
+          <p class="date">Projet académique</p>
+          <p class="description">
+            Développement d'un site web complet pour une association caritative, intégrant un tableau de bord administratif pour la gestion efficace des dons et des bénévoles. Solution digitale pour moderniser la gestion associative.
+          </p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Dashboard</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="professional">
+        <h2>Expériences Professionnelles</h2>
+
+        <div class="project">
+          <h3>Stage Professionnel - Sonelgaz</h3>
+          <p class="date">Juin 2025 - Septembre 2025</p>
+          <p class="description">
+            <strong>Application Mobile de Sensibilisation</strong><br /><br />
+            Développement d'une application mobile innovante pour sensibiliser les clients à la sécurité domestique et à la prévention des risques gaz/électricité via des supports digitaux interactifs. L'application intègre des vidéos éducatives, guides pratiques et quiz interactifs pour améliorer la sécurité des utilisateurs et réduire les incidents domestiques.
+          </p>
+          <div class="tags">
+            <span class="tag">Mobile Development</span>
+            <span class="tag">UX/UI Design</span>
+            <span class="tag">Contenu Multimédia</span>
+            <span class="tag">Prévention</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Stage Professionnel - Sonelgaz</h3>
+          <p class="date">Septembre 2024 - Octobre 2024</p>
+          <p class="description">
+            <strong>Portail Client en Ligne</strong><br /><br />
+            Développement d'un portail client en ligne pour la gestion des services de raccordement en électricité et gaz dans le cadre d'une stratégie multicanale. Solution web moderne facilitant les démarches administratives des clients.
+          </p>
+          <div class="tags">
+            <span class="tag">Développement Web</span>
+            <span class="tag">Gestion de Services</span>
+            <span class="tag">Stratégie Multicanale</span>
+            <span class="tag">UX</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Stage Professionnel - Centre de Formation Professionnel</h3>
+          <p class="date">Juin 2024 - Juillet 2024</p>
+          <p class="description">
+            <strong>Application de Gestion Académique</strong><br /><br />
+            Conception et développement d'une application de gestion complète pour un centre de formation, couvrant l'inscription des étudiants, le suivi des notes et le planning des cours. Digitalisation des processus administratifs.
+          </p>
+          <div class="tags">
+            <span class="tag">Gestion Académique</span>
+            <span class="tag">Base de Données</span>
+            <span class="tag">Interface Utilisateur</span>
+            <span class="tag">Administration</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Compétences</h2>
+
+        <div class="project">
+          <h3>Langages de Programmation</h3>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">C/C++</span>
+            <span class="tag">SQL</span>
+            <span class="tag">R</span>
+            <span class="tag">MATLAB</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Technologies Web & Mobile</h3>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">Django</span>
+            <span class="tag">SpringBoot</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag">Odoo</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">Bootstrap</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Data Science & Analyse de Données</h3>
+          <div class="tags">
+            <span class="tag">NumPy</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">SMOTE</span>
+            <span class="tag">CTGAN</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Pentaho</span>
+            <span class="tag">Analyse et Fouille de Données</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Bases de Données</h3>
+          <p class="description">
+            Conception et Modélisation de bases de données relationnelles et NoSQL
+          </p>
+          <div class="tags">
+            <span class="tag">MySQL</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Oracle</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Neo4j</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>DevOps & Virtualisation</h3>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Réseaux</h3>
+          <p class="description">
+            Routage statique et dynamique, protocoles de communication
+          </p>
+          <div class="tags">
+            <span class="tag">TCP/IP</span>
+            <span class="tag">UDP</span>
+            <span class="tag">HTTP</span>
+            <span class="tag">DHCP</span>
+            <span class="tag">DNS</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Design & Outils Créatifs</h3>
+          <div class="tags">
+            <span class="tag">Adobe Illustrator</span>
+            <span class="tag">Adobe Photoshop</span>
+            <span class="tag">Figma</span>
+            <span class="tag">Blender</span>
+            <span class="tag">Lucidchart</span>
+            <span class="tag">Miro</span>
+            <span class="tag">StarUML</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Langues</h3>
+          <p class="description">
+            <strong>Arabe :</strong> Langue maternelle<br />
+            <strong>Français :</strong> C1 (TCF TP)<br />
+            <strong>Anglais :</strong> C1
+          </p>
+        </div>
+
+        <div class="project">
+          <h3>Compétences Relationnelles</h3>
+          <div class="tags">
+            <span class="tag">Travail en équipe et communication efficace</span>
+            <span class="tag">Gestion de projets</span>
+            <span class="tag">Adaptabilité et flexibilité</span>
+            <span class="tag">Créativité et innovation</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <strong>Email :</strong>
+            <a href="mailto:lc_chemini@esi.dz">lc_chemini@esi.dz</a>
+          </div>
+          <div class="contact-item">
+            <strong>Téléphone :</strong>
+            <a href="tel:+213553582469">(+213) 553582469</a>
+          </div>
+          <div class="contact-item">
+            <strong>Adresse :</strong>
+            <span>Alger, Algérie</span>
+          </div>
+          <div class="contact-item">
+            <strong>LinkedIn :</strong>
+            <a href="https://www.linkedin.com/in/chemini-chems-eddine-b26a2137b/" target="_blank" rel="noopener noreferrer">linkedin.com/in/chems-eddine-chemini</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 CHEMINI Chems Eddine. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+      // Effet navbar au scroll
+      window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    </script>
+  </body>
+</html>
