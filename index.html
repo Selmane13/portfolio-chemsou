@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CHEMINI Chems Eddine - Portfolio</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💼</text></svg>">
-    
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
       
@@ -268,13 +265,33 @@
         line-height: 1.1;
       }
 
-      header p {
-        font-size: clamp(1rem, 1.5vw, 1.15rem);
+      header .subtitle {
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        color: var(--primary);
+        font-weight: 600;
+        line-height: 1.4;
+        text-align: left;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      header .subtitle::before {
+        content: '';
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      header .interests {
+        font-size: clamp(0.95rem, 1.4vw, 1.1rem);
         color: var(--text-secondary);
-        font-weight: 400;
-        line-height: 1.8;
+        line-height: 1.9;
         text-align: left;
         margin-bottom: 2rem;
+        max-width: 600px;
       }
 
       /* Boutons CTA dans le header */
@@ -646,7 +663,15 @@
           text-align: center;
         }
 
-        header p {
+        header .subtitle {
+          justify-content: center;
+        }
+
+        header .subtitle::before {
+          display: none;
+        }
+
+        header .interests {
           text-align: center;
         }
 
@@ -731,8 +756,9 @@
         </div>
         <div class="header-text">
           <h1>CHEMINI Chems Eddine</h1>
-          <p>
-            Étudiant en Ingénierie des Systèmes d'Information | Passionné par le Management de Projet • Data Science • Développement Full-Stack • Sécurité des SI
+          <p class="subtitle">Étudiant en Ingénierie des Systèmes d'Information</p>
+          <p class="interests">
+            Passionné par le Management de Projet, la Data Science, le Développement Full-Stack et la Sécurité des Systèmes d'Information.
           </p>
           <div class="cta-buttons">
             <a href="#contact" class="btn btn-primary">
@@ -741,7 +767,7 @@
               </svg>
               Me Contacter
             </a>
-            <a href="./CV_CHEMINI_Chems_Eddine.pdf" download class="btn btn-secondary">
+            <a href="./images/CHEMINI_ChemsEddine_CV_CF.pdf" download class="btn btn-secondary">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
@@ -761,12 +787,6 @@
         <p>
           Motivé, rigoureux et déterminé à atteindre mes objectifs tout en développant mes compétences, avec une ambition d'approfondir mes connaissances dans les domaines variés de l'informatique à travers une expérience internationale. Mon objectif professionnel est de débuter en tant qu'ingénieur spécialisé en systèmes d'information, puis d'évoluer vers un poste de Chef de projet IT, afin de piloter des projets digitaux stratégiques et d'accompagner la transformation numérique des entreprises.
         </p>
-        <p>
-          <strong>Formation :</strong> Diplôme d'Ingénieur d'État et Master en Informatique - spécialité Systèmes d'Information et Technologies | ESI Alger (2021-2026)
-        </p>
-        <p>
-          <strong>Baccalauréat :</strong> Mention Excellent avec 18,44/20 - Série Scientifique Expérimentale (2021)
-        </p>
       </section>
 
       <section id="academic">
@@ -776,26 +796,12 @@
           <h3>Stage de fin d'études - Université du Luxembourg</h3>
           <p class="date">2025-2026 | SNT Luxembourg</p>
           
-          <div class="project-image">
-            <div class="project-image-placeholder">
-              📊 Projet de Recherche en Data Science<br/>
-              <small>Imputation de données temporelles par modèles de diffusion</small>
-            </div>
-          </div>
           
           <p class="description">
             <strong>Sujet :</strong> Imputation de données temporelles manquantes par modèles de diffusion guidés par une base de données graphe.<br /><br />
             Conception d'un Framework combinant Neo4j pour la modélisation des relations et des modèles de diffusion pour l'imputation efficace et scalable des données manquantes. Ce projet innovant exploite les bases de données graphes pour améliorer les performances des modèles de diffusion dans le traitement des séries temporelles incomplètes.
           </p>
           
-          <div class="project-links">
-            <a href="#" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-              Voir Détails
-            </a>
-          </div>
           
           <div class="tags">
             <span class="tag">Neo4j</span>
@@ -811,25 +817,11 @@
           <h3>Prédiction des Décès Post-Opératoires</h3>
           <p class="date">Projet académique</p>
           
-          <div class="project-image">
-            <div class="project-image-placeholder">
-              🏥 Machine Learning Médical<br/>
-              <small>Classification et prédiction des risques post-opératoires</small>
-            </div>
-          </div>
-          
+ 
           <p class="description">
             Développement d'un modèle de classification avancé pour anticiper les risques de décès après intervention chirurgicale. Le projet utilise des techniques de Machine Learning pour analyser des données médicales complexes et prédire les risques post-opératoires avec précision.
           </p>
-          
-          <div class="project-links">
-            <a href="#" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              GitHub
-            </a>
-          </div>
+
           
           <div class="tags">
             <span class="tag">Python</span>
@@ -1021,6 +1013,9 @@
 
         <div class="project">
           <h3>Langages de Programmation</h3>
+          <p class="description">
+            Maîtrise de plusieurs langages pour le développement d'applications variées et l'analyse de données
+          </p>
           <div class="tags">
             <span class="tag">Python</span>
             <span class="tag">Java</span>
@@ -1035,6 +1030,9 @@
 
         <div class="project">
           <h3>Technologies Web & Mobile</h3>
+          <p class="description">
+            Expertise en développement Full-Stack avec des frameworks modernes et des architectures scalables
+          </p>
           <div class="tags">
             <span class="tag">React</span>
             <span class="tag">Next.js</span>
@@ -1053,6 +1051,9 @@
 
         <div class="project">
           <h3>Data Science & Analyse de Données</h3>
+          <p class="description">
+            Compétences en Machine Learning, visualisation de données et analyse prédictive
+          </p>
           <div class="tags">
             <span class="tag">NumPy</span>
             <span class="tag">Pandas</span>
@@ -1081,6 +1082,9 @@
 
         <div class="project">
           <h3>DevOps & Virtualisation</h3>
+          <p class="description">
+            Expérience avec les outils de conteneurisation et de gestion de versions pour un déploiement efficace
+          </p>
           <div class="tags">
             <span class="tag">Docker</span>
             <span class="tag">Kubernetes</span>
@@ -1106,6 +1110,9 @@
 
         <div class="project">
           <h3>Design & Outils Créatifs</h3>
+          <p class="description">
+            Capacité à créer des interfaces utilisateur modernes et des visuels professionnels
+          </p>
           <div class="tags">
             <span class="tag">Adobe Illustrator</span>
             <span class="tag">Adobe Photoshop</span>
@@ -1120,14 +1127,20 @@
         <div class="project">
           <h3>Langues</h3>
           <p class="description">
-            <strong>Arabe :</strong> Langue maternelle<br />
-            <strong>Français :</strong> C1 (TCF TP)<br />
-            <strong>Anglais :</strong> C1
+            Communication fluide en milieu professionnel multilingue et capacité à travailler dans un contexte international
           </p>
+          <div class="tags">
+            <span class="tag">Arabe - Langue maternelle</span>
+            <span class="tag">Français - C1 (TCF TP)</span>
+            <span class="tag">Anglais - C1</span>
+          </div>
         </div>
 
         <div class="project">
           <h3>Compétences Relationnelles</h3>
+          <p class="description">
+            Soft skills essentiels pour réussir dans des environnements collaboratifs et dynamiques
+          </p>
           <div class="tags">
             <span class="tag">Travail en équipe et communication efficace</span>
             <span class="tag">Gestion de projets</span>
@@ -1154,7 +1167,7 @@
           </div>
           <div class="contact-item">
             <strong>LinkedIn :</strong>
-            <a href="https://www.linkedin.com/in/chemini-chems-eddine-b26a2137b/" target="_blank" rel="noopener noreferrer">linkedin.com/in/chems-eddine-chemini</a>
+            <a href="https://www.linkedin.com/in/chems-eddine-chemini" target="_blank" rel="noopener noreferrer">linkedin.com/in/chems-eddine-chemini</a>
           </div>
         </div>
       </section>
